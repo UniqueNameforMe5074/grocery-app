@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Delete Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: #f8f9fa">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <h1 class="display-4">Delete a Product</h1>
+                {% if error %}
+                    <div class="alert alert-danger mt-3">
+                        {{ error }}
+                    </div>
+                {% endif %}
+                <form method="POST" action="/delete_product" class="mt-4">
+                    <div class="form-group">
+                        <label for="product_name">Product Name:</label>
+                        <input type="text" id="product_name" name="product_name" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+
+                {% if product and not product_deleted %}
+                    <div class="mt-4">
+                        <h3>Product Information:</h3>
+                        <div>
+                            <img src="{{ url_for('static', filename=product.image) }}" alt="Product image not found! :("
+                                 style="width: 200px; height: 200px">
+                        </div>
+                        <p>Name: {{ product.name }}</p>
+                        <p>Category: {{ product.category }}</p>
+                        <p>Price: Rs. {{ product.price }}</p>
+                        <p>Stock: {{ product.stock }}</p>
+                        <p>Best before {{ product.best_before }} from purchase</p>
+                        <p><strong>Are you sure you want to delete this product?</strong></p>
+                        <form method="POST" action="/delete_product" class="mb-4">
+                            <input type="hidden" name="product_id" value="{{ product.id }}">
+                            <button type="submit" class="btn btn-danger">Yes</button>
+                        </form>
+                    </div>
+                {% endif %}
+                <div class="mt-4">
+                    {% if product_deleted %}
+                        <p style="color:green">The product has been removed from the database.</p>
+                    {% endif %}
+                </div>
+                <div class="mt-4">
+                    <a href="{{ url_for('admin_home') }}" class="btn btn-secondary">Go Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

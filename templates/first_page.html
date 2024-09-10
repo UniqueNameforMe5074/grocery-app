@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Welcome!</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: #f8f9fa">
+    <div class="container" style="max-width: 600px; padding-top: 250px; text-align: center">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="{{ url_for('static', filename='grocery_bag_left.png') }}" alt="Image Left" style="width: 100%; margin-right: 20px">
+            </div>
+            <div class="col-md-6">
+                <div style="font-size: 36px; font-weight: bold; color: #007bff; margin-bottom: 20px">Welcome!</div>
+                <div class="lead" style="font-size: 18px; color: #333; margin-bottom: 30px">This is my first app dev project. :)</div>
+                <div style="justify-content: center">
+                    <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg" style="margin-right: 10px">Log In</a>
+                    <a href="{{ url_for('signup') }}" class="btn btn-primary btn-lg" style="margin-left: 10px">Sign Up</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <img src="{{ url_for('static', filename='grocery_bag_right.png') }}" alt="Image Right" style="width: 200px; height: 200px">
+            </div>
+        </div>
+    </div>
+</body>
+</html>

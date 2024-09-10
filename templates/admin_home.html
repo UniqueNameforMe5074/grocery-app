@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: #f8f9fa">
+    <div class="container mt-4" style="text-align: center">
+        <div class="row justify-content-center">
+            <div>
+                <h1 class="mb-4 display-4">Inventory Management</h1>
+                <ul class="list-group">
+                    <li class="list-group-item" style="font-size: 24px; background-color: #afd275; margin-bottom: 10px">
+                        <a href="{{ url_for('view_products') }}" style="color:white">View all Products</a>
+                    </li>
+                    <li class="list-group-item" style="font-size: 24px; background-color: #acddde; margin-bottom: 10px">
+                        <a href="{{ url_for('add_product') }}" style="color:white">Add a Product</a>
+                    </li>
+                    <li class="list-group-item" style="font-size: 24px; background-color: #d6ce15; margin-bottom: 10px">
+                        <a href="{{ url_for('modify_product') }}" style="color:white">Modify a Product</a>
+                    </li>
+                    <li class="list-group-item" style="font-size: 24px; background-color: #e7717d; margin-bottom: 10px">
+                        <a href="{{ url_for('delete_product') }}" style="color:white">Delete a Product</a>
+                    </li>
+                    <li class="list-group-item" style="font-size: 24px; background-color: #afd275; margin-bottom: 10px">
+                        <a href="{{ url_for('view_categories') }}" style="color:white">View all Categories</a>
+                    </li>
+                    <li class="list-group-item" style="font-size: 24px; background-color: #acddde; margin-bottom: 10px;">
+                        <a href="{{ url_for('add_category') }}" style="color:white">Add a Category</a>
+                    </li>
+                    <li class="list-group-item" style="font-size: 24px; background-color: #d6ce15; margin-bottom: 10px">
+                        <a href="{{ url_for('modify_category') }}" style="color:white">Modify a Category</a>
+                    </li>
+                    <li class="list-group-item" style="font-size: 24px; background-color: #e7717d; margin-bottom: 10px;">
+                        <a href="{{ url_for('delete_category') }}" style="color:white">Delete a Category</a>
+                    </li>
+                </ul>
+                <a href="{{ url_for('login') }}" class="btn btn-danger">Log Out</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: #f8f9fa">
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-6">
+            <h1 class="display-4">Add a Product</h1>
+            {% if errors|length > 0 %}
+                <div class="alert alert-danger">
+                    <p>The following issue(s) have been detected. Please try again.</p>
+                    <ul>
+                        {% for error in errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            <form method="POST" action="{{ url_for('add_product') }}">
+                <div class="form-group">
+                    <label for="productName">Name:</label>
+                    <input type="text" class="form-control" id="productName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="imageFilename">Image (filename):</label>
+                    <input type="text" class="form-control" id="imageFilename" name="image" required>
+                </div>
+                <div class="form-group">
+                    <label for="categorySelect">Category:</label>
+                    <select class="form-control" id="categorySelect" name="category" required>
+                        {% for category in categories %}
+                            <option value="{{ category.name }}">{{ category.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="productPrice">Price:</label>
+                    <input type="text" class="form-control" id="productPrice" name="price" required>
+                </div>
+                <div class="form-group">
+                    <label for="productStock">Stock:</label>
+                    <input type="text" class="form-control" id="productStock" name="stock" required>
+                </div>
+                <div class="form-group">
+                    <label for="bestBefore">Best Before (e.g. - 5 days, 3 weeks, 6 months, etc.):</label>
+                    <input type="text" class="form-control" id="bestBefore" name="best_before" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Add Product</button>
+            </form>
+            {% if product_added %}
+                <div class="mt-4">
+                    <p class="text-success">The product has been added to the database.</p>
+                </div>
+            {% endif %}
+            <div class="mt-4">
+                <a href="{{ url_for('admin_home') }}" class="btn btn-secondary">Go Back</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Modify Product</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body style="background-color: #f8f9fa">
+    <div class="container" style="max-width: 600px; padding-top: 50px">
+        <h1 class="display-4">Modify a Product</h1>
+        {% if errors|length > 0 %}
+            <div class="alert alert-danger" role="alert">
+                The following issue(s) have been detected. Please try again.
+                <ul>
+                    {% for error in errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+        <form method="POST" action="{{ url_for('modify_product') }}">
+            <div class="form-group">
+                <label for="current_name">Which product do you want to modify?</label>
+                <input type="text" name="current_name" id="current_name" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+        {% if product and not product_modified %}
+            <div class="mt-4">
+                <h4>Product Information:</h4>
+                <p><img src="{{ url_for('static', filename=product.image) }}" alt="Image file not found! :("
+                        style="width: 200px; height: 200px"></p>
+                <p><strong>Name:</strong> {{ product.name }}</p>
+                <p><strong>Category:</strong> {{ product.category }}</p>
+                <p><strong>Price:</strong> Rs. {{ product.price }}</p>
+                <p><strong>Stock:</strong> {{ product.stock }}</p>
+                <p><strong>Best Before:</strong> {{ product.best_before }} from purchase</p>
+                <p>Leave a field blank if the corresponding value does not need to be modified.</p>
+                <form method="POST" action="{{ url_for('modify_product') }}">
+                    <div class="form-group">
+                        <label for="new_name">New Name:</label>
+                        <input type="text" name="new_name" id="new_name" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Image (filename):</label>
+                        <input type="text" name="image" id="image" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="category">Category:</label>
+                        <select name="category" id="category" class="form-control">
+                            {% for category in categories %}
+                                <option value="{{ category.name }}">{{ category.name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="price">Price:</label>
+                        <input type="text" name="price" id="price" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="stock">Stock:</label>
+                        <input type="text" name="stock" id="stock" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="best_before">Best Before:</label>
+                        <input type="text" name="best_before" id="best_before" class="form-control">
+                    </div>
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <button type="submit" class="btn btn-primary">Modify Product</button>
+                </form>
+            </div>
+        {% endif %}
+        {% if product_modified %}
+            <div class="alert alert-success mt-4" role="alert">
+                The product's details have been modified.
+            </div>
+        {% endif %}
+        <div class="mt-4">
+            <a href="{{ url_for('admin_home') }}" class="btn btn-secondary">Go Back</a>
+        </div>
+    </div>
+</body>
+</html>
